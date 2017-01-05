@@ -1,0 +1,25 @@
+<h1><%= @details.name %></h1>
+
+<ul>
+  <li>Time: <%= @details.time %></li>
+  <li>Date: <%= @details.date %></li>
+  <li>Location: <%= @details.location %></li>
+  <li>Description: <%= @details.description %></li>
+  <li>Duration: <%= @details.duration %></li>
+  <% if @details.creator_id.is_a? Integer %>
+    <li>Creator: <%= User.find(@details.creator_id).username %></li>
+  <% end %>
+</ul>
+
+<form action="" method="post">
+  <button>Join</button>
+</form>
+
+<h1>Attendees:</h1>
+
+<ul>
+  <% @attendees.each do |attendee| %>
+  <% user = User.find(attendee.user_id) %>
+    <li><%= user.username %>, <%= user.email %></li>
+  <% end %>
+<ul>
